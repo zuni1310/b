@@ -847,6 +847,48 @@ Whether you're planning a getaway, staycation, or group trip, enjoy effortless b
     box-sizing: border-box;
   }
 </style>
+	<script>
+  const chatToggle = document.getElementById("chat-toggle");
+  const chatbox = document.getElementById("chatbox");
+  const chatInput = document.getElementById("chat-input");
+  const chatLog = document.getElementById("chat-log");
+
+  chatToggle.addEventListener("click", () => {
+    chatbox.style.display = chatbox.style.display === "none" ? "flex" : "none";
+  });
+
+  chatInput.addEventListener("keypress", async function (e) {
+    if (e.key === "Enter") {
+      const userMsg = chatInput.value;
+      addMessage("You", userMsg);
+      chatInput.value = "";
+
+      const hotels = await fetch("hotels.json").then(res => res.json());
+
+      const matches = hotels.filter(hotel =>
+        hotel.available &&
+        userMsg.toLowerCase().includes(hotel.location.toLowerCase())
+      );
+
+      if (matches.length > 0) {
+        let response = "Here are some matching hotels:\n";
+        matches.forEach(h => {
+          response += `🏨 ${h.name} – Rs. ${h.price}/night\n`;
+        });
+        addMessage("Bot", response);
+      } else {
+        addMessage("Bot", "Sorry, no matching hotels found. Try another area?");
+      }
+    }
+  });
+
+  function addMessage(sender, text) {
+    const msg = document.createElement("div");
+    msg.innerHTML = `<strong>${sender}:</strong> ${text.replace(/\n/g, "<br>")}`;
+    chatLog.appendChild(msg);
+    chatLog.scrollTop = chatLog.scrollHeight;
+  }
+</script>
 
 
     <script src="js/bootstrap.bundle.min.js"></script>
