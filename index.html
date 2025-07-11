@@ -799,80 +799,158 @@ Whether you're planning a getaway, staycation, or group trip, enjoy effortless b
     	<div class="spinner-border" role="status">
     		<span class="visually-hidden">Loading...</span>
     	</div>
-    </div><!-- Floating Chatbot Button + Box -->
-<div id="chat-toggle">💬</div>
-<div id="chatbox">
-  <div id="chat-log"></div>
-  <input type="text" id="chat-input" placeholder="Ask about hotels..." />
-</div>
 
-<!-- Chatbot Styles -->
-<script>
-  const chatToggle = document.getElementById("chat-toggle");
-  const chatbox = document.getElementById("chatbox");
-  const chatInput = document.getElementById("chat-input");
-  const chatLog = document.getElementById("chat-log");
+  <!-- Floating Chat Button -->
+  <button id="chat-toggle">💬</button>
 
-  let hotels = [];
+  <!-- Chatbox -->
+  <div id="chatbox">
+    <div id="chat-log"></div>
+    <input type="text" id="chat-input" placeholder="Ask about hotels..." />
+  </div>
 
-  // Load hotel data
-  fetch("hotels.json")
-    .then(res => res.json())
-    .then(data => {
-      hotels = data;
+  <script>
+    const chatToggle = document.getElementById("chat-toggle");
+    const chatbox = document.getElementById("chatbox");
+    const chatInput = document.getElementById("chat-input");
+    const chatLog = document.getElementById("chat-log");
+
+    let hotels = [];
+
+    // Load hotel data
+    fetch("hotels.json")
+      .then(res => res.json())
+      .then(data => {
+        hotels = data;
+      });
+
+    // Show chatbox and welcome message
+    chatToggle.addEventListener("click", () => {
+      chatbox.style.display = chatbox.style.display === "none" ? "flex" : "none";
+      if (chatLog.innerHTML === "") {
+        addMessage("Bot", "👋 Hi! Welcome to Murree Heights. I can help you find the perfect hotel. Just tell me your area or budget.");
+      }
     });
 
-  // Show/hide chatbox and welcome message
-  chatToggle.addEventListener("click", () => {
-    chatbox.style.display = chatbox.style.display === "none" ? "flex" : "none";
-    if (chatLog.innerHTML === "") {
-      addMessage("Bot", "👋 Hi there! Welcome to Murree Heights. I can help you find the perfect hotel. Just tell me your budget, area, or any preference!");
+    // Handle user input
+    chatInput.addEventListener("keypress", function (e) {
+      if (e.key === "Enter" && chatInput.value.trim() !== "") {
+        const userMsg = chatInput.value.trim();
+        addMessage("You", userMsg);
+        chatInput.value = "";
+        handleBotResponse(userMsg.toLowerCase());
+      }
+    });
+
+    function handleBotResponse(message) {
+      const greetings = ["hi", "hello", "salam", "hey"];
+      if (greetings.includes(message)) {
+        addMessage("Bot", "Hello! 😊 How can I help you today?");
+        return;
+      }
+
+      // Detect numeric budget
+      const budgetMatch = message.match(/(\d{4,6})/);
+      if (budgetMatch) {
+        const budget = parseInt(budgetMatch[0]);
+        const matches = hotels.filter(h => h.available && h.price <= budget);
+        if (matches.length > 0) {
+          let response = `💰 Based on your budget (Rs. ${budget}), here are some great options:\n`;
+          matches.forEach(h => {
+            response += `• ${h.name} – Rs. ${h.price}/night\n`;
+          });
+          response += `<br><br>👉 View them all on our <a href="properties.html" target="_blank">hotel listings page</a>.`;
+          addMessage("Bot", response);
+        } else {
+          addMessage("Bot", `I couldn't find hotels under Rs. ${budget}. You can see all options on our <a href="properties.html" target="_blank">hotel page</a>.`);
+        }
+        return;
+      }
+
+      // Location match
+      const matchedHotels = hotels.filter(h =>
+        h.available && message.includes(h.location.toLowerCase())
+      );
+
+      if (matchedHotels.length > 0) {
+        let reply = "📍 Based on your location, here are some options:\n";
+        matchedHotels.forEach(h => {
+          reply += `• ${h.name} – Rs. ${h.price}/night\n`;
+        });
+        reply += `<br><br>🔗 View them all here: <a href="properties.html" target="_blank">properties.html</a>`;
+        addMessage("Bot", reply);
+      } else {
+        addMessage("Bot", "Sorry, no matching hotels found. You can try another area or <a href='properties.html' target='_blank'>see all hotels here</a>.");
+      }
     }
-  });
 
-  // Handle user input
-  chatInput.addEventListener("keypress", function (e) {
-    if (e.key === "Enter" && chatInput.value.trim() !== "") {
-      const userMsg = chatInput.value.trim();
-      addMessage("You", userMsg);
-      chatInput.value = "";
-      handleBotResponse(userMsg.toLowerCase());
+    function addMessage(sender, text) {
+      const msg = document.createElement("div");
+      msg.innerHTML = `<strong>${sender}:</strong> ${text.replace(/\n/g, "<br>")}`;
+      chatLog.appendChild(msg);
+      chatLog.scrollTop = chatLog.scrollHeight;
     }
-  });
-
-  // Human-style responses + hotel search
-  function handleBotResponse(message) {
-    const greetings = ["hi", "hello", "salam", "hey"];
-    if (greetings.includes(message)) {
-      addMessage("Bot", "Hello! 😊 How can I assist you today?");
-      return;
+  </script>
+	    <style> #chat-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #4CAF50, #2E7D32);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      transition: transform 0.2s ease;
+    }
+    #chat-toggle:hover {
+      transform: scale(1.1);
     }
 
-    // Try to match location in message
-    const matchedHotels = hotels.filter(hotel =>
-      hotel.available &&
-      message.includes(hotel.location.toLowerCase())
-    );
-
-    if (matchedHotels.length > 0) {
-      let reply = "🏨 Here are some great options:\n";
-      matchedHotels.forEach(h => {
-        reply += `• ${h.name} – Rs. ${h.price}/night\n`;
-      });
-      addMessage("Bot", reply);
-    } else {
-      addMessage("Bot", "Sorry, no matching hotels found. Try mentioning the area, like 'Mall Road' or 'Bhurban'.");
+    /* Chatbox */
+    #chatbox {
+      position: fixed;
+      top: 90px;
+      right: 20px;
+      width: 320px;
+      height: 440px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      display: none;
+      flex-direction: column;
+      padding: 10px;
+      z-index: 999;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
     }
-  }
 
-  // Add message to chat log
-  function addMessage(sender, text) {
-    const msg = document.createElement("div");
-    msg.innerHTML = `<strong>${sender}:</strong> ${text.replace(/\n/g, "<br>")}`;
-    chatLog.appendChild(msg);
-    chatLog.scrollTop = chatLog.scrollHeight;
-  }
-</script>
+    #chat-log {
+      flex-grow: 1;
+      overflow-y: auto;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    #chat-input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #aaa;
+      outline: none;
+      font-size: 14px;
+    }
+
+    #chat-log div {
+      margin-bottom: 10px;
+    }
+  </style>
 
 
     <script src="js/bootstrap.bundle.min.js"></script>
