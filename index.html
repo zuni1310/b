@@ -799,7 +799,54 @@ Whether you're planning a getaway, staycation, or group trip, enjoy effortless b
     	<div class="spinner-border" role="status">
     		<span class="visually-hidden">Loading...</span>
     	</div>
-    </div>
+    </div><!-- Floating Chatbot Button + Box -->
+<div id="chat-toggle">💬</div>
+<div id="chatbox">
+  <div id="chat-log"></div>
+  <input type="text" id="chat-input" placeholder="Ask about hotels..." />
+</div>
+
+<!-- Chatbot Styles -->
+<style>
+  #chat-toggle {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: #4CAF50;
+    color: white;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    line-height: 50px;
+    font-size: 24px;
+    cursor: pointer;
+    z-index: 1000;
+  }
+  #chatbox {
+    position: fixed;
+    top: 80px;
+    right: 20px;
+    width: 300px;
+    height: 400px;
+    background: white;
+    border: 1px solid #ccc;
+    display: none;
+    flex-direction: column;
+    padding: 10px;
+    z-index: 999;
+  }
+  #chat-log {
+    height: 330px;
+    overflow-y: auto;
+    font-size: 14px;
+  }
+  #chat-input {
+    width: 100%;
+    padding: 10px;
+    box-sizing: border-box;
+  }
+</style>
 
 
     <script src="js/bootstrap.bundle.min.js"></script>
