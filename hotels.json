@@ -2,25 +2,129 @@
   {
     "name": "Hotel Skyview",
     "location": "Mall Road",
-    "price": 6500,
-    "roomTypes": ["Deluxe", "Family"],
-    "facilities": ["WiFi", "Parking", "Room Service"],
-    "available": true
+    "price": 10821,
+    "roomTypes": ["Standard", "Family"],
+    "facilities": ["Breakfast", "Parking", "Balcony", "Heater", "Free WiFi"],
+    "available": false
   },
   {
     "name": "Alpine Resort",
-    "location": "Bhurban",
-    "price": 8500,
-    "roomTypes": ["Luxury", "Mountain View"],
-    "facilities": ["WiFi", "Parking", "Balcony"],
+    "location": "Mall Road",
+    "price": 11900,
+    "roomTypes": ["Mountain View"],
+    "facilities": ["Parking", "Free WiFi", "Breakfast"],
     "available": true
   },
   {
     "name": "Green Hills Lodge",
-    "location": "Patriata",
-    "price": 4800,
-    "roomTypes": ["Standard", "Family"],
-    "facilities": ["Room Heater", "Parking"],
+    "location": "Mall Road",
+    "price": 6057,
+    "roomTypes": ["Family", "Standard", "Suite"],
+    "facilities": ["WiFi", "Parking", "Room Service", "Breakfast", "Free WiFi"],
     "available": false
+  },
+  {
+    "name": "Royal Peak Inn",
+    "location": "Bhurban",
+    "price": 10750,
+    "roomTypes": ["Luxury", "Mountain View"],
+    "facilities": ["Room Service", "Heater", "WiFi", "Balcony"],
+    "available": true
+  },
+  {
+    "name": "Pine View Cottages",
+    "location": "Patriata",
+    "price": 9637,
+    "roomTypes": ["Mountain View", "Deluxe"],
+    "facilities": ["Heater", "Room Service", "Parking", "Balcony"],
+    "available": false
+  },
+  {
+    "name": "Mountain Breeze",
+    "location": "Mall Road",
+    "price": 4994,
+    "roomTypes": ["Family", "Standard"],
+    "facilities": ["WiFi", "Free Parking", "Heater", "Room Service"],
+    "available": true
+  },
+  {
+    "name": "The Valley Stay",
+    "location": "Kashmir Point",
+    "price": 8572,
+    "roomTypes": ["Luxury", "Suite"],
+    "facilities": ["Balcony", "Breakfast", "Free WiFi"],
+    "available": true
+  },
+  {
+    "name": "Hilltop Heritage",
+    "location": "Bhurban",
+    "price": 7500,
+    "roomTypes": ["Deluxe", "Family"],
+    "facilities": ["Free Parking", "WiFi", "Breakfast"],
+    "available": true
+  },
+  {
+    "name": "Sunset Retreat",
+    "location": "New Murree",
+    "price": 6900,
+    "roomTypes": ["Standard", "Family"],
+    "facilities": ["Room Service", "Heater", "WiFi"],
+    "available": false
+  },
+  {
+    "name": "Bhurban Bliss",
+    "location": "Bhurban",
+    "price": 11320,
+    "roomTypes": ["Luxury", "Suite", "Mountain View"],
+    "facilities": ["Free WiFi", "Heater", "Balcony"],
+    "available": true
+  },
+  {
+    "name": "Heaven Heights",
+    "location": "Kashmir Point",
+    "price": 7600,
+    "roomTypes": ["Standard", "Deluxe"],
+    "facilities": ["Parking", "WiFi", "Breakfast"],
+    "available": true
+  },
+  {
+    "name": "Cloud Nine Hotel",
+    "location": "Patriata",
+    "price": 8700,
+    "roomTypes": ["Luxury", "Suite"],
+    "facilities": ["Free Parking", "Room Service", "Heater", "WiFi"],
+    "available": false
+  },
+  {
+    "name": "Snowflake Residency",
+    "location": "Mall Road",
+    "price": 5800,
+    "roomTypes": ["Deluxe", "Family"],
+    "facilities": ["WiFi", "Heater", "Room Service"],
+    "available": true
+  },
+  {
+    "name": "Grand Murree Hotel",
+    "location": "Mall Road",
+    "price": 9600,
+    "roomTypes": ["Luxury", "Standard"],
+    "facilities": ["Balcony", "Free Parking", "Breakfast"],
+    "available": true
+  },
+  {
+    "name": "Panorama Point",
+    "location": "Bhurban",
+    "price": 10300,
+    "roomTypes": ["Family", "Mountain View"],
+    "facilities": ["WiFi", "Free Parking", "Breakfast"],
+    "available": true
+  },
+  {
+    "name": "Evergreen Suites",
+    "location": "New Murree",
+    "price": 7200,
+    "roomTypes": ["Standard", "Luxury"],
+    "facilities": ["Balcony", "Heater", "Free WiFi", "Breakfast"],
+    "available": true
   }
 ]
