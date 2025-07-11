@@ -98,7 +98,7 @@
   {
     "name": "Snowflake Residency",
     "location": "Mall Road",
-    "price": 5800,
+    "price": 3500,
     "roomTypes": ["Deluxe", "Family"],
     "facilities": ["WiFi", "Heater", "Room Service"],
     "available": true
