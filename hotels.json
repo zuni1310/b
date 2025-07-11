@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Hotel Skyview",
+    "location": "Mall Road",
+    "price": 6500,
+    "roomTypes": ["Deluxe", "Family"],
+    "facilities": ["WiFi", "Parking", "Room Service"],
+    "available": true
+  },
+  {
+    "name": "Alpine Resort",
+    "location": "Bhurban",
+    "price": 8500,
+    "roomTypes": ["Luxury", "Mountain View"],
+    "facilities": ["WiFi", "Parking", "Balcony"],
+    "available": true
+  },
+  {
+    "name": "Green Hills Lodge",
+    "location": "Patriata",
+    "price": 4800,
+    "roomTypes": ["Standard", "Family"],
+    "facilities": ["Room Heater", "Parking"],
+    "available": false
+  }
+]
