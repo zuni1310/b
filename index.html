@@ -24,7 +24,66 @@
 	<title>Hotels &mdash; Murree Heights</title>
 
 
+  <style> #chat-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: linear-gradient(135deg, #4CAF50, #2E7D32);
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      z-index: 1000;
+      transition: transform 0.2s ease;
+    }
+    #chat-toggle:hover {
+      transform: scale(1.1);
+    }
 
+    /* Chatbox */
+    #chatbox {
+      position: fixed;
+      top: 90px;
+      right: 20px;
+      width: 320px;
+      height: 440px;
+      background: #fff;
+      border-radius: 10px;
+      border: 1px solid #ddd;
+      display: none;
+      flex-direction: column;
+      padding: 10px;
+      z-index: 999;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    #chat-log {
+      flex-grow: 1;
+      overflow-y: auto;
+      font-size: 14px;
+      margin-bottom: 10px;
+    }
+
+    #chat-input {
+      width: 100%;
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #aaa;
+      outline: none;
+      font-size: 14px;
+    }
+
+    #chat-log div {
+      margin-bottom: 10px;
+    }
+  </style>
 
   <style>
     .whatsapp-contact {
@@ -891,66 +950,7 @@ Whether you're planning a getaway, staycation, or group trip, enjoy effortless b
       chatLog.scrollTop = chatLog.scrollHeight;
     }
   </script>
-	    <style> #chat-toggle {
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      background: linear-gradient(135deg, #4CAF50, #2E7D32);
-      color: white;
-      border: none;
-      border-radius: 50%;
-      width: 60px;
-      height: 60px;
-      font-size: 24px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-      z-index: 1000;
-      transition: transform 0.2s ease;
-    }
-    #chat-toggle:hover {
-      transform: scale(1.1);
-    }
-
-    /* Chatbox */
-    #chatbox {
-      position: fixed;
-      top: 90px;
-      right: 20px;
-      width: 320px;
-      height: 440px;
-      background: #fff;
-      border-radius: 10px;
-      border: 1px solid #ddd;
-      display: none;
-      flex-direction: column;
-      padding: 10px;
-      z-index: 999;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
-    }
-
-    #chat-log {
-      flex-grow: 1;
-      overflow-y: auto;
-      font-size: 14px;
-      margin-bottom: 10px;
-    }
-
-    #chat-input {
-      width: 100%;
-      padding: 10px;
-      border-radius: 6px;
-      border: 1px solid #aaa;
-      outline: none;
-      font-size: 14px;
-    }
-
-    #chat-log div {
-      margin-bottom: 10px;
-    }
-  </style>
+	  
 
 
     <script src="js/bootstrap.bundle.min.js"></script>
