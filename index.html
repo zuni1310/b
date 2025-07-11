@@ -807,81 +807,65 @@ Whether you're planning a getaway, staycation, or group trip, enjoy effortless b
 </div>
 
 <!-- Chatbot Styles -->
-<style>
-  #chat-toggle {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    background: #4CAF50;
-    color: white;
-    border-radius: 50%;
-    width: 50px;
-    height: 50px;
-    text-align: center;
-    line-height: 50px;
-    font-size: 24px;
-    cursor: pointer;
-    z-index: 1000;
-  }
-  #chatbox {
-    position: fixed;
-    top: 80px;
-    right: 20px;
-    width: 300px;
-    height: 400px;
-    background: white;
-    border: 1px solid #ccc;
-    display: none;
-    flex-direction: column;
-    padding: 10px;
-    z-index: 999;
-  }
-  #chat-log {
-    height: 330px;
-    overflow-y: auto;
-    font-size: 14px;
-  }
-  #chat-input {
-    width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
-  }
-</style>
-	<script>
+<script>
   const chatToggle = document.getElementById("chat-toggle");
   const chatbox = document.getElementById("chatbox");
   const chatInput = document.getElementById("chat-input");
   const chatLog = document.getElementById("chat-log");
 
+  let hotels = [];
+
+  // Load hotel data
+  fetch("hotels.json")
+    .then(res => res.json())
+    .then(data => {
+      hotels = data;
+    });
+
+  // Show/hide chatbox and welcome message
   chatToggle.addEventListener("click", () => {
     chatbox.style.display = chatbox.style.display === "none" ? "flex" : "none";
-  });
-
-  chatInput.addEventListener("keypress", async function (e) {
-    if (e.key === "Enter") {
-      const userMsg = chatInput.value;
-      addMessage("You", userMsg);
-      chatInput.value = "";
-
-      const hotels = await fetch("hotels.json").then(res => res.json());
-
-      const matches = hotels.filter(hotel =>
-        hotel.available &&
-        userMsg.toLowerCase().includes(hotel.location.toLowerCase())
-      );
-
-      if (matches.length > 0) {
-        let response = "Here are some matching hotels:\n";
-        matches.forEach(h => {
-          response += `🏨 ${h.name} – Rs. ${h.price}/night\n`;
-        });
-        addMessage("Bot", response);
-      } else {
-        addMessage("Bot", "Sorry, no matching hotels found. Try another area?");
-      }
+    if (chatLog.innerHTML === "") {
+      addMessage("Bot", "👋 Hi there! Welcome to Murree Heights. I can help you find the perfect hotel. Just tell me your budget, area, or any preference!");
     }
   });
 
+  // Handle user input
+  chatInput.addEventListener("keypress", function (e) {
+    if (e.key === "Enter" && chatInput.value.trim() !== "") {
+      const userMsg = chatInput.value.trim();
+      addMessage("You", userMsg);
+      chatInput.value = "";
+      handleBotResponse(userMsg.toLowerCase());
+    }
+  });
+
+  // Human-style responses + hotel search
+  function handleBotResponse(message) {
+    const greetings = ["hi", "hello", "salam", "hey"];
+    if (greetings.includes(message)) {
+      addMessage("Bot", "Hello! 😊 How can I assist you today?");
+      return;
+    }
+
+    // Try to match location in message
+    const matchedHotels = hotels.filter(hotel =>
+      hotel.available &&
+      message.includes(hotel.location.toLowerCase())
+    );
+
+    if (matchedHotels.length > 0) {
+      let reply = "🏨 Here are some great options:\n";
+      matchedHotels.forEach(h => {
+        reply += `• ${h.name} – Rs. ${h.price}/night\n`;
+      });
+      addMessage("Bot", reply);
+    } else {
+      addMessage("Bot", "Sorry, no matching hotels found. Try mentioning the area, like 'Mall Road' or 'Bhurban'.");
+    }
+  }
+
+  // Add message to chat log
   function addMessage(sender, text) {
     const msg = document.createElement("div");
     msg.innerHTML = `<strong>${sender}:</strong> ${text.replace(/\n/g, "<br>")}`;
