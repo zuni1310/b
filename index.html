@@ -954,55 +954,13 @@ function addMessage(sender, text) {
         </div>
       </div> <!-- /.container -->
     </div> <!-- /.site-footer -->
-<a href="https://wa.me/923005521508" target="_blank" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
+<a href="https://wa.me/923171766996" target="_blank" style="position: fixed; bottom: 20px; right: 20px; z-index: 1000;">
   <img src="https://img.icons8.com/ios-filled/50/25D366/whatsapp.png" alt="WhatsApp" style="width: 50px; height: 50px;">
 </a>
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<script>
-  fetch("hotels.json")
-    .then(res => res.json())
-    .then(hotels => {
-      const fuse = new Fuse(hotels, {
-        keys: ['name', 'location', 'facilities'],
-        threshold: 0.3
-      });
-
-      document.getElementById("hotelSearch").addEventListener("input", e => {
-        const result = fuse.search(e.target.value);
-        document.getElementById("searchResults").innerHTML = result.map(r => 
-          `<p><strong>${r.item.name}</strong> - ${r.item.location}</p>`).join("");
-      });
-    });
-</script>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	<input type="text" id="hotelSearch" placeholder="Search hotels..." />
-<div id="searchResults"></div>
+		
+		
 
     <!-- Preloader -->
     <div id="overlayer"></div>
@@ -1010,7 +968,7 @@ function addMessage(sender, text) {
     	<div class="spinner-border" role="status">
     		<span class="visually-hidden">Loading...</span>
     	</div>
-<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.6.2"></script>
+
 
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/tiny-slider.js"></script>
